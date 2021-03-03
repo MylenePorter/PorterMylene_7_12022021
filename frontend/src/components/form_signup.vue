@@ -30,6 +30,7 @@ export default {
                 this.$emit("createAccount", data);
             }else{
                 console.log("Something went awefully wrong!");
+                this.$parent.setNotification('alert', "Les infomations fournies sont manquantes ou invalides", null);
             }
         },
         validatePasswords() {
@@ -38,10 +39,12 @@ export default {
                     return true;
                 }else{
                     console.log("Passwords don't match!");
+                    this.$parent.setNotification('alert', "Les nouveaux mots de passes ne sont pas identiques", null);
                     return false;
                 }
             }else{
                 console.log("Password is missing!");
+                this.$parent.setNotification('alert', "Il manque le mot de passe", null);
                 return true;
             }
         }
@@ -73,12 +76,12 @@ export default {
             </div>
             <div class="signup_form_password">
                 <label for="password">Mot de passe : </label>
-                <input class="input_size" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" v-model="password" ref="password" type="password" name="password" required>
+                <input class="input_size" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" v-model="password" ref="password" type="password" name="password" required>
                 <span class="mandatory">*</span>
             </div>
             <div class="signup_form_password">
                 <label for="password" class="account_label_size">Confirmation : </label>
-                <input class="input_size" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" type="password" ref="password2" v-model="password2">
+                <input class="input_size" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="password2" v-model="password2">
                 <span class="mandatory">*</span>
             </div>
             <div class="signup_form_infopwd">Votre mot de passe doit contenir minimum 8 caractères, dont 1 chiffre, 1 majuscule et 1 miniscule </div>

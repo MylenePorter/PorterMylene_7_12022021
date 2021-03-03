@@ -18,23 +18,29 @@ export default {
     methods: {
         updateAccount() {
             let data;
-            //const validateForm = this.$refs.modifyAccount.checkValidity();
-            const validateForm = true;
+            const validateForm = this.$refs.modifyAccount.checkValidity();
+            //const password = this.$refs.password.checkValidity();
+            //console.log(password);
+            //const validateForm = true;
             if(validateForm && this.validatePasswords()){
                 data = {
                     last_name: this.$refs.last_name.value,
                     first_name: this.$refs.first_name.value,
                     email: this.$refs.email.value,
-                    password: this.$refs.password.value,
+                    password: this.$refs.password.value
                 }
                 this.$emit("updateAccount", data);
+                this.$parent.setNotification('notification', "Votre compte a été mis à jour", null);
+            }else{
+                this.$parent.setNotification('alert', "Les informations fournies sont incomplètes", null);
             }
         },
         validatePasswords() {
             if(this.$refs.newPassword.value){
-                if(this.$refs.newPassword.value === this.$refs.newPassword2.value){
+                if(this.$refs.newPassword.value == this.$refs.newPassword2.value){
                     return true;
                 }else{
+                    this.$parent.setNotification('alert', "Les nouveaux mots de passes ne sont pas identiques", null);
                     return false;
                 }
             }else{
@@ -68,17 +74,17 @@ export default {
             <div class="account_form_actual-password">
                 <label for="password" class="account_label_size">Mot de passe actuel</label>
                 <span class="mandatory">*</span>
-                <input pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" type="password" ref="password" v-model="password" class="account_input_size" required>
+                <input pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="password" v-model="password" class="account_input_size" required>
                 <span class="pwd_required">Mot de passe obligatoire pour toute modification</span>
             </div>
             <div class="account_form_new-password">
                 <br /><br />
                 <label for="password" class="account_label_size">Nouveau mot de passe</label>
-                <input pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" type="password" ref="newPassword" v-model="newPassword" class="account_input_size">
+                <input pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="newPassword" v-model="newPassword" class="account_input_size">
             </div>
             <div class="account_form_confirm-new-password">
                 <label for="password" class="account_label_size">Confirmation nouveau mot de passe</label>
-                <input pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" type="password" ref="newPassword2" v-model="newPassword2" class="account_input_size">
+                <input pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="newPassword2" v-model="newPassword2" class="account_input_size">
             </div>
             <button v-on:click.prevent="updateAccount()" class="account_button_update">Mettre à jour mon compte</button>
         </form>

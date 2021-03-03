@@ -5,22 +5,34 @@
 import HeaderNavbar from "@/components/header_navbar.vue";
 import ButtonDeleteAccount from "@/components/button_delete_account.vue";
 import FormAccount from "@/components/form_account.vue"
+import Notifications from "@/components/notifications.vue";
 
 export default {
   name: "Account",
   components: {
     HeaderNavbar,
+    Notifications,
     ButtonDeleteAccount,
-    FormAccount    
+    FormAccount
   },
   data: () => {
     return {
-      account: []
+      account: [],
+      notifications: {}
     }
   },
   methods: {
     deleteAccount(){
-      this.$router.replace('/');
+      this.$axios
+        .delete('user/delete')
+        .then((w) => {
+          console.log(w);
+          this.$router.replace('/');
+        })
+        .catch((e) => {
+          console.log(e);
+          this.setNotification('alert', "Il y a eu une erreur", null);
+        });
     },
     updateAccount(data) {
       console.log(data);
@@ -29,8 +41,12 @@ export default {
         .then((w) => {
           console.log(w);
           this.initialize();
+          this.setNotification('notification', "Vos informations ont été mises à jour", null);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          console.log(e);
+          this.setNotification('alert', "Il y a eu une erreur", null);
+        });
     },
     initialize() {
       this.getAccountData();
@@ -42,10 +58,16 @@ export default {
           this.account = data.data;
         })
         .catch((e) => {
-          if (e.response.status === 401) {
-            alert("Veuillez vous connecter");
-          }
+          console.log(e);
+          this.setNotification('alert', "Il y a eu une erreur", null);
         });
+    },
+    setNotification(type, message, action) {
+      this.notifications = {
+        type: type,
+        message: message,
+        action: action
+      }
     }
   },
   created() {
@@ -60,13 +82,8 @@ export default {
 <template>
     <div>
       <HeaderNavbar />
+      <Notifications v-bind:notifications="notifications" />
       <ButtonDeleteAccount />
       <FormAccount v-bind:account="account" v-on:updateAccount="updateAccount" />
-      
     </div>
 </template>
-
-
-<style scoped>
-
-</style>

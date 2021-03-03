@@ -84,31 +84,15 @@ exports.profile = (req, res, next) => {
 }
 
 exports.delete = (req, res, next) => {
-    const password = req.body.password;
     const userID = res.locals.userID;
-    let query_find = `  SELECT users.password
-                        FROM users
-                        WHERE users.id = '${userID}'  `;
     let query_delete = `DELETE FROM users
                         WHERE users.id = '${userID}' `;
-    mysql.query(query_find, function(err, result) {
-        if (result.length == 0) {
-            return res.status(401).json({ error: "Utilisateur non trouvé !" });
-        } else {
-            bcrypt.compare(password, result[0].password)
-                .then(valid => {
-                    if (!valid) {
-                        return res.status(401).json({ error: "Mot de passe incorrect !" });
-                    }
-                    mysql.query(query_delete, function(err, result) {
-                        if (result.affectedRows == 0) {
-                            return res.status(400).json({ message: "Suppression échouée" });
-                        } else {
-                            res.status(200).json({ message: "Utilisateur supprimé !" });
-                        }
-                    });
-                })
-                .catch(e => res.status(501).json(e));
+                        console.log(query_delete);
+    mysql.query(query_delete, function(err, result) {
+        if(err){
+            return res.status(400).json({ message: "Suppression échouée" });
+        }else{
+            res.status(200).json({ message: "Utilisateur supprimé !" });
         }
     });
 }

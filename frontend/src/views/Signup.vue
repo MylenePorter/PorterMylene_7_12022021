@@ -1,15 +1,18 @@
 <script>
 import HeaderLogin from "@/components/header_login_signup.vue";
 import FormSignup from "@/components/form_signup.vue";
+import Notifications from "@/components/notifications.vue";
 
 export default {
   name: "Signup",
   components: {
     HeaderLogin,
+    Notifications,
     FormSignup
   },
   data: () => {
     return {
+      notifications: {}
     }
   },
   methods: {
@@ -22,13 +25,10 @@ export default {
           console.log(w);
           this.login(data);
         })
-        .catch(function (error) {
-          if(error.response){
-            if(error.response.status === 409){
-              console.log("Duplicate email");
-            }
-          }
-        });
+        .catch((e) => {
+          console.log(e);
+          this.setNotification('alert', "Cette adresse email est déjà utilisée", null);
+        })
     },
     login(data){
       this.$axios
@@ -40,15 +40,17 @@ export default {
           this.$router.push("Posts");
         })
         .catch((e) => {
-          if (e.response.status == 401) {
-            //this.message = "Email ou mot de passe invalide";
-            alert("Email ou mot de passe invalide");
-          } else if (e.response.status == 500) {
-            //this.message = "Erreur serveur";
-            alert("Erreur serveur");
-          }
+          console.log(e);
+          this.setNotification('alert', "Email ou mot de passe invalide", null);
           this.$router.push("/");
         });
+    },
+    setNotification(type, message, action) {
+      this.notifications = {
+        type: type,
+        message: message,
+        action: action
+      }
     }
   }
 }
@@ -58,6 +60,7 @@ export default {
 <template>
   <div class="container-fluid">
       <HeaderLogin />
+      <Notifications v-bind:notifications="notifications" />
       <FormSignup v-on:createAccount="createAccount" />
   </div>
 </template>

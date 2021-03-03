@@ -60,7 +60,7 @@ export default {
         })
         .catch((e) => {
           console.log(e);
-          this.setNotification('alert', "Votre commentaire n'a pas pu été enregistré", null);
+          this.setNotification('alert', "Votre commentaire n'a pas pu être enregistré", null);
         });
     },
     likePost(postID) {
