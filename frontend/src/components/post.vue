@@ -24,7 +24,7 @@ export default {
             }
         },
         likePost(postID) {
-            console.log("likePost");
+            
             this.$emit("likePost", postID);
         }
     }
@@ -48,7 +48,7 @@ export default {
                 </h1>
                 <div class="post_media">
                     <router-link :to="{name: 'Post', query: { postID: post.postID } }">
-                        <img class="post_media_pic" :src="'http://localhost:3000/images/' + post.filename" alt="Zapatillas_panama">
+                        <img class="post_media_pic" :src="'http://localhost:3000/images/' + post.filename" :alt="post.content">
                     </router-link>
                 </div>
                 <div class="post_appreciation">

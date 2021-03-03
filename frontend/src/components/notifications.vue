@@ -7,7 +7,7 @@ export default {
     props: ['notifications'],
     methods: {
         hide() {
-            this.notifications.type = "hidden";
+            this.notifications.type = "hidden"; //
         }
     }
 }

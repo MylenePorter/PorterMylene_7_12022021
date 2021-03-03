@@ -26,25 +26,25 @@ export default {
       this.$axios
         .delete('user/delete')
         .then((w) => {
-          console.log(w);
+          
           this.$router.replace('/');
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Il y a eu une erreur", null);
         });
     },
     updateAccount(data) {
-      console.log(data);
+      
       this.$axios
         .put('user/modify', data)
         .then((w) => {
-          console.log(w);
+          
           this.initialize();
           this.setNotification('notification', "Vos informations ont été mises à jour", null);
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Il y a eu une erreur", null);
         });
     },
@@ -58,7 +58,7 @@ export default {
           this.account = data.data;
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Il y a eu une erreur", null);
         });
     },
@@ -71,7 +71,7 @@ export default {
     }
   },
   created() {
-    //console.log(this.$store.state.user.username);
+    //
     this.initialize();
   }
 }

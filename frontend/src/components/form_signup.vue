@@ -15,7 +15,7 @@ export default {
     },
     methods: {
         createAccount() {
-            console.log("start");
+            
             let data;
             //const validateForm = this.$refs.createAccountForm.checkValidity();
             const validateForm = true;
@@ -26,10 +26,10 @@ export default {
                     email: this.$refs.email.value,
                     password: this.$refs.password.value,
                 }
-                console.log(data);
+                
                 this.$emit("createAccount", data);
             }else{
-                console.log("Something went awefully wrong!");
+                
                 this.$parent.setNotification('alert', "Les infomations fournies sont manquantes ou invalides", null);
             }
         },
@@ -38,12 +38,12 @@ export default {
                 if(this.$refs.password.value === this.$refs.password2.value){
                     return true;
                 }else{
-                    console.log("Passwords don't match!");
+                    
                     this.$parent.setNotification('alert', "Les nouveaux mots de passes ne sont pas identiques", null);
                     return false;
                 }
             }else{
-                console.log("Password is missing!");
+                
                 this.$parent.setNotification('alert', "Il manque le mot de passe", null);
                 return true;
             }
@@ -60,29 +60,24 @@ export default {
         <!-- Formulaire inscription -->
         <form class="signup_form" method="post" ref="createAccountForm">
             <div class="signup_form_lastname">
-                <label for="lastname">Nom : </label>
+                <label for="lastname">Nom <span class="mandatory">* </span></label>
                 <input class="input_size" type="text" v-model="last_name" ref="last_name" name="lastname" required>
-                <span class="mandatory">*</span>
             </div>
               <div class="signup_form_firstname">
-                <label for="firstname">Prénom : </label>
+                <label for="firstname">Prénom <span class="mandatory">* </span></label>
                 <input class="input_size" type="text" v-model="first_name" ref="first_name" name="firstname" required>
-                <span class="mandatory">*</span>
             </div>
               <div class="signup_form_email">
-                <label for="email">Email : </label>
+                <label for="email">Email <span class="mandatory">* </span></label>
                 <input class="input_size" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" v-model="email" type="text" ref="email" name="email" required>
-                <span class="mandatory">*</span>
             </div>
             <div class="signup_form_password">
-                <label for="password">Mot de passe : </label>
+                <label for="password">Mot de passe <span class="mandatory">* </span></label>
                 <input class="input_size" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" v-model="password" ref="password" type="password" name="password" required>
-                <span class="mandatory">*</span>
             </div>
             <div class="signup_form_password">
-                <label for="password" class="account_label_size">Confirmation : </label>
+                <label for="password" class="account_label_size">Confirmation <span class="mandatory">* </span></label>
                 <input class="input_size" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="password2" v-model="password2">
-                <span class="mandatory">*</span>
             </div>
             <div class="signup_form_infopwd">Votre mot de passe doit contenir minimum 8 caractères, dont 1 chiffre, 1 majuscule et 1 miniscule </div>
             <!-- Bouton "Se connecter" -->
@@ -98,7 +93,6 @@ export default {
     background-color: #fff;
     padding: 30px 10px;
     color: #1f4073 ;
-    width: 100%;
     text-align: center;
 
 }

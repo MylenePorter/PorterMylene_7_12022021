@@ -29,7 +29,7 @@ export default {
       delete this.$axios.defaults.headers.common["Authorization"];
     },
     login(){
-      console.log(this.$data);
+      
       this.$axios
         .post("user/login", this.$data)
         .then((data) => {

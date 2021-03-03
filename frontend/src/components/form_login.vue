@@ -49,11 +49,11 @@ export default {
       const validEmail = document.getElementById("email").checkValidity();
       const validPassword = document.getElementById("password").checkValidity();
       if(validEmail && validPassword){
-        console.log("can connect");
+        
         this.$emit("startLogin");
       }else{
         this.$parent.setNotification('alert', "L'email n'est pas valide ! Ou est-ce le mot de passe ?", null);
-        console.log("not valid");
+        
       }
     }
   }
@@ -66,7 +66,6 @@ export default {
     background-color: #fff;
     padding: 30px 10px;
     color: #1f4073 ;
-    width: 100%;
     text-align: center;
 }
 .login_tag {

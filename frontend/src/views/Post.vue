@@ -23,52 +23,52 @@ export default {
   },
   methods: {
     deleteComment(commentID) {
-      console.log(commentID);
+      
       this.$axios
         .delete(`post/${this.postID}/comment/${commentID}`)
         .then((w) => {
-          console.log(w);
+          
           this.initialize();
           this.setNotification('notification', "Le commentaire vient d'être supprimé", null);
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Il y a eu une erreur lors de la suppression", null);
         });
     },
     deletePost(postID) {
-      console.log(postID);
+      
       this.$axios
         .delete(`post/${postID}`)
         .then((w) => {
-          console.log(w);
+          
           this.$router.replace('/Posts');
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Il y a eu une erreur lors de la suppression", null);
         });
     },
     postComment(comment) {
-      console.log(comment);
+      
       //alert(`post/${this.postID}/comment`);
       this.$axios
         .post(`post/${this.postID}/comment`, { content: comment })
         .then((w) => {
-          console.log(w);
+          
           this.initialize();
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Votre commentaire n'a pas pu être enregistré", null);
         });
     },
     likePost(postID) {
-      console.log(postID);
+      
       this.$axios
         .post(`post/${postID}/like`)
         .then((w) => {
-          console.log(w);
+          
           this.initialize();
         })
         .catch((e) => console.log(e));
@@ -78,14 +78,14 @@ export default {
       this.getAllPosts();
       this.getComments();
     },
-    getAllPosts() {
+    getAllPosts() { // should be getOnePost()
       this.$axios
         .get("post/" + this.postID)
         .then((data) => {
           this.posts = data.data;
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Ahhh!! Nous n'avons pas de posts!!!", null);
         });
     },
@@ -96,7 +96,7 @@ export default {
           this.comments = data.data; 
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Personne ne m'aime!", null);
         });
     },

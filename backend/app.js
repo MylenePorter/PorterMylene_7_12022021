@@ -14,14 +14,9 @@ const postRoutes = require('./routes/posts'); // Accès pour route 'sauce'
 
 // CORS
 app.use((req, res, next) => {
-    //res.setHeader('Access-Control-Allow-Origin', '*');// Restriction avec autorisation par url
-    //res.setHeader('Access-Control-Allow-Headers', '*'); // Restriction des types d'en-tête
-    //res.setHeader('Access-Control-Allow-Methods', '*'); // Restriction des types de méthodes utilisées
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080 http://192.168.31.92:8080 http://192.168.31.82:8080');// Restriction avec autorisation par url
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080 http://192.168.31.92:8080 http://192.168.31.82:8080'); // Restriction avec autorisation par url
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); // Restriction des types d'en-tête
-    //res.setHeader('Access-Control-Allow-Headers', 'append,delete,entries,foreach,get,has,keys,set,values,Authorization'); // Restriction des types d'en-tête
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); // Restriction des types de méthodes utilisées
-    //res.setHeader('Access-Control-Allow-Credentials', 'true'); 
     next();
 });
 

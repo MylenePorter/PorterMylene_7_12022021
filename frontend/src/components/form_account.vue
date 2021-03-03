@@ -20,7 +20,6 @@ export default {
             let data;
             const validateForm = this.$refs.modifyAccount.checkValidity();
             //const password = this.$refs.password.checkValidity();
-            //console.log(password);
             //const validateForm = true;
             if(validateForm && this.validatePasswords()){
                 data = {
@@ -62,18 +61,15 @@ export default {
                 <input type="text" ref="last_name" v-model="account[0].last_name" class="account_input_size" required>
             </div>
             <div class="account_form_firstname">
-                <label for="firstname" class="account_label_size">Prénom</label>
-                <span class="mandatory">*</span>
+                <label for="firstname" class="account_label_size">Prénom <span class="mandatory">*</span></label>
                 <input type="text" ref="first_name" v-model="account[0].first_name" class="account_input_size" required>
             </div>
             <div class="account_form_email">
-                <label for="email" class="account_label_size">Email</label>
-                <span class="mandatory">*</span>
+                <label for="email" class="account_label_size">Email <span class="mandatory">*</span></label>
                 <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="text" ref="email" v-model="account[0].email" class="account_input_size" required>
             </div>
             <div class="account_form_actual-password">
-                <label for="password" class="account_label_size">Mot de passe actuel</label>
-                <span class="mandatory">*</span>
+                <label for="password" class="account_label_size">Mot de passe actuel <span class="mandatory">*</span></label>
                 <input pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="password" v-model="password" class="account_input_size" required>
                 <span class="pwd_required">Mot de passe obligatoire pour toute modification</span>
             </div>

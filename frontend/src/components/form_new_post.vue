@@ -13,14 +13,14 @@ export default {
     methods: {
         sendPost() {
             const validateForm = this.$refs.createPost.checkValidity();
-            console.log(validateForm);
+            
             if(validateForm){
-                console.log("got it");
+                
                 this.$emit("postPost", this.$data);
                 this.$refs.content.value = null;
                 this.$refs.image.value = null;
             }else{
-                console.log("notif1");
+                
                 this.$parent.setNotification('alert', "Quelque chose dans le formulaire n'est pas bon", null);
             }
         },

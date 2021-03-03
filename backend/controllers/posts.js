@@ -44,9 +44,9 @@ exports.getAllPosts = (req, res, next) => {
     const userID = res.locals.userID;
     const query = ` SELECT      posts.id AS postID,
                                 DATE_FORMAT(posts.posted, 'le %e %M %Y à %kh%i') AS posted,
-                                posts.content,             --   /\   --
-                                users.first_name,          --  /  \  --
-                                users.last_name,           -- (*)(*) --
+                                posts.content,
+                                users.first_name,
+                                users.last_name,
                                 (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id AND likes.user_id = '${userID}') AS me_like,
                                 (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS likes,
                                 (SELECT files.name FROM files WHERE files.id = posts.file_id) AS filename,
@@ -72,9 +72,9 @@ exports.getOnePost = (req, res, next) => {
     const query_comment = ` SELECT  posts.id AS postID,
                                     posts.content,
                                     DATE_FORMAT(posts.posted, 'le %e %M %Y à %kh%i') AS posted,
-                                    files.name AS filename,    --   /\   --
-                                    users.first_name,          --  /  \  --
-                                    users.last_name,           -- (*)(*) --
+                                    files.name AS filename,
+                                    users.first_name,
+                                    users.last_name,
                                     (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id AND likes.user_id = '${userID}') AS me_like,
                                     (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS likes,
                                     (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments,
@@ -99,9 +99,9 @@ exports.deletePost = (req, res, next) => {
     const userID = res.locals.userID;
 
     let where_admin;
-    if(userID != process.env.ADMIN_ID){
+    if (userID != process.env.ADMIN_ID) {
         where_admin = ` AND posts.user_id = '${userID}' `;
-    }else{
+    } else {
         where_admin = ``;
     }
 
@@ -146,20 +146,20 @@ exports.likePostStatus = (req, res, next) => {
         if (err) {
             return res.status(504).json(err.message);
         } else {
-            if(result[0]['count'] > 0){
+            if (result[0]['count'] > 0) {
                 const query_like = `    DELETE
                                         FROM    likes
                                         WHERE   likes.post_id = '${postID}'
                                         AND     likes.user_id = '${userID}'  `;
                 console.log(query_like);
                 mysql.query(query_like, function(err, result) {
-                    if(err){
+                    if (err) {
                         return res.status(504).json(err.message);
-                    }else{
+                    } else {
                         res.status(200).json({ message: "Removed like" });
                     }
                 });
-            }else{
+            } else {
                 const query_like = `    INSERT INTO likes
                                         SET     likes.post_id = '${postID}',
                                                 likes.user_id = '${userID}',
@@ -223,11 +223,11 @@ exports.addComment = (req, res, next) => {
 exports.deleteComment = (req, res, next) => {
     const userID = res.locals.userID;
     const commentID = req.params.cid;
-    
+
     let where_admin;
-    if(userID != process.env.ADMIN_ID){
+    if (userID != process.env.ADMIN_ID) {
         where_admin = ` AND comments.user_id = '${userID}' `;
-    }else{
+    } else {
         where_admin = ``;
     }
 

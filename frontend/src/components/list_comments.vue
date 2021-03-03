@@ -25,7 +25,7 @@ export default {
             }
         },
         writeComment() {
-            console.log(this.comments);
+            
         }
     }
 }
