@@ -17,16 +17,16 @@ export default {
   },
   methods: {
     createAccount(data) {
-      console.log("in");
-      console.log(data);
+      
+      
       this.$axios
         .post('user/signup', data)
         .then((w) => {
-          console.log(w);
+          
           this.login(data);
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Cette adresse email est déjà utilisée", null);
         })
     },
@@ -36,11 +36,12 @@ export default {
         .then((data) => {
           sessionStorage.setItem("token", data.data.token);
           sessionStorage.setItem("userID", data.data.userID);
+          sessionStorage.setItem("role", data.data.role);
           this.$axios.defaults.headers.common["Authorization"] = "Bearer " + data.data.token;
           this.$router.push("Posts");
         })
         .catch((e) => {
-          console.log(e);
+          
           this.setNotification('alert', "Email ou mot de passe invalide", null);
           this.$router.push("/");
         });
