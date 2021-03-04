@@ -8,8 +8,8 @@
         <!-- Formulaire inscription -->
         <form class="login_form" method="post">
             <div class="login_form_email">
-                <label for="email">Email : </label>
-                <input 
+                <label for="email">Email : </label><br>
+                <input class="input_size" 
                   required
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   title="Un email"
@@ -21,8 +21,8 @@
             </div>
 
             <div class="login_form_password">
-                <label for="password">Mot de passe : </label>
-                <input type="password" id="password" name="password" v-model="password" v-on:input="syncData" required>
+                <label for="password">Mot de passe : </label><br>
+                <input class="input_size" type="password" id="password" name="password" v-model="password" v-on:input="syncData" required>
             </div>
           <!-- Bouton "Se connecter" -->
           <button class="login_button" v-on:click.prevent="login">Se connecter</button>
@@ -83,10 +83,28 @@ export default {
 .login_form_password {
     padding: 5px 0px;
 }
+.input_size {
+  width: 60%;
+};
 .login_button {
     margin: 40px 10px 0px 10px;
     padding: 5px 5px;
     border-radius: 5px;
     cursor:pointer;
+}
+
+/* CSS pour tablettes */
+
+@media all and (min-width: 765px) and (max-width: 899px) {
+  .input_size {
+    width: 70%;
+  }
+}
+/* CSS pour les mobiles */
+
+@media all and (min-width: 320px) and (max-width: 764px) {
+  .input_size {
+    width: 85%;
+  }
 }
 </style>

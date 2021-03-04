@@ -7,7 +7,7 @@ export default {
     props: ['posts'],
     methods: {
         isLiked: function (liked) {
-            return liked > 0 ? 'button-heart-active' : '';
+            return liked > 0 ? 'button-heart-active' : ''; // condition ? true : false
         },
         isMine: function (user_id) {
             const role = sessionStorage.getItem('role');
@@ -34,7 +34,7 @@ export default {
 <!--TEMPLATE-->
 <template>
     <div class="posts">
-        <div v-for="(post, x) in posts" :key="x">
+        <div v-for="(post, x) in posts" :key="x"> <!-- Boucler dans "posts" pour sortir chaque "post"(ligne) -->
             <div class="post">
                 <div class="post_info">
                     <div class="post_info_name">{{post.first_name}} {{post.last_name}}</div>
@@ -49,6 +49,7 @@ export default {
                 <div class="post_media">
                     <router-link :to="{name: 'Post', query: { postID: post.postID } }">
                         <img class="post_media_pic" :src="'http://localhost:3000/images/' + post.filename" :alt="post.content">
+                        <!-- :src concaténé avec le post.filename --> 
                     </router-link>
                 </div>
                 <div class="post_appreciation">

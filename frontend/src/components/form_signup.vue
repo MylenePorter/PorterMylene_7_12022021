@@ -60,23 +60,23 @@ export default {
         <!-- Formulaire inscription -->
         <form class="signup_form" method="post" ref="createAccountForm">
             <div class="signup_form_lastname">
-                <label for="lastname">Nom <span class="mandatory">* </span></label>
+                <label for="lastname">Nom <span class="mandatory">* </span></label><br>
                 <input class="input_size" type="text" v-model="last_name" ref="last_name" name="lastname" required>
             </div>
               <div class="signup_form_firstname">
-                <label for="firstname">Prénom <span class="mandatory">* </span></label>
+                <label for="firstname">Prénom <span class="mandatory">* </span></label><br>
                 <input class="input_size" type="text" v-model="first_name" ref="first_name" name="firstname" required>
             </div>
               <div class="signup_form_email">
-                <label for="email">Email <span class="mandatory">* </span></label>
+                <label for="email">Email <span class="mandatory">* </span></label><br>
                 <input class="input_size" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" v-model="email" type="text" ref="email" name="email" required>
             </div>
             <div class="signup_form_password">
-                <label for="password">Mot de passe <span class="mandatory">* </span></label>
+                <label for="password">Mot de passe <span class="mandatory">* </span></label><br>
                 <input class="input_size" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" v-model="password" ref="password" type="password" name="password" required>
             </div>
             <div class="signup_form_password">
-                <label for="password" class="account_label_size">Confirmation <span class="mandatory">* </span></label>
+                <label for="password" class="account_label_size">Confirmation <span class="mandatory">* </span></label><br>
                 <input class="input_size" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" type="password" ref="password2" v-model="password2">
             </div>
             <div class="signup_form_infopwd">Votre mot de passe doit contenir minimum 8 caractères, dont 1 chiffre, 1 majuscule et 1 miniscule </div>

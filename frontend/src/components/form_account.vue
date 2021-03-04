@@ -26,7 +26,8 @@ export default {
                     last_name: this.$refs.last_name.value,
                     first_name: this.$refs.first_name.value,
                     email: this.$refs.email.value,
-                    password: this.$refs.password.value
+                    password: this.$refs.password.value,
+                    new_password: this.$refs.newPassword.value
                 }
                 this.$emit("updateAccount", data);
                 this.$parent.setNotification('notification', "Votre compte a été mis à jour", null);
@@ -58,7 +59,7 @@ export default {
         <form class="account_form" method="post" ref="modifyAccount">
             <div class="account_form_lastname">
                 <label for="lastname" class="account_label_size">Nom <span class="mandatory">*</span></label>
-                <input type="text" ref="last_name" v-model="account[0].last_name" class="account_input_size" required>
+                <input type="text" ref="last_name" name="last_name" v-model="account[0].last_name" class="account_input_size" required>
             </div>
             <div class="account_form_firstname">
                 <label for="firstname" class="account_label_size">Prénom <span class="mandatory">*</span></label>
