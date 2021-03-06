@@ -26,12 +26,12 @@ export default {
       
       this.$axios
         .delete(`post/${this.postID}/comment/${commentID}`)
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
           this.setNotification('notification', "Le commentaire vient d'être supprimé", null);
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Il y a eu une erreur lors de la suppression", null);
         });
@@ -40,11 +40,11 @@ export default {
       
       this.$axios
         .delete(`post/${postID}`)
-        .then((w) => {
+        .then(() => {
           
           this.$router.replace('/Posts');
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Il y a eu une erreur lors de la suppression", null);
         });
@@ -54,11 +54,11 @@ export default {
       //alert(`post/${this.postID}/comment`);
       this.$axios
         .post(`post/${this.postID}/comment`, { content: comment })
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Votre commentaire n'a pas pu être enregistré", null);
         });
@@ -67,11 +67,11 @@ export default {
       
       this.$axios
         .post(`post/${postID}/like`)
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
         })
-        .catch((e) => console.log(e));
+        .catch(() => console.log(e));
     },
     initialize() {
       this.postID = this.$route.query.postID; // Because vue's params don't darn work!
@@ -84,7 +84,7 @@ export default {
         .then((data) => {
           this.posts = data.data;
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Ahhh!! Nous n'avons pas de posts!!!", null);
         });
@@ -95,7 +95,7 @@ export default {
         .then((data) => {
           this.comments = data.data; 
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Personne ne m'aime!", null);
         });

@@ -21,11 +21,11 @@ export default {
       
       this.$axios
         .post('user/signup', data)
-        .then((w) => {
+        .then(() => {
           
           this.login(data);
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Cette adresse email est déjà utilisée", null);
         })

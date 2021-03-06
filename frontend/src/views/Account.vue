@@ -25,11 +25,11 @@ export default {
     deleteAccount(){
       this.$axios
         .delete('user/delete')
-        .then((w) => {
+        .then(() => {
           
           this.$router.replace('/');
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Il y a eu une erreur", null);
         });
@@ -38,12 +38,12 @@ export default {
       
       this.$axios
         .put('user/modify', data)
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
           this.setNotification('notification', "Vos informations ont été mises à jour", null);
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Il y a eu une erreur", null);
         });
