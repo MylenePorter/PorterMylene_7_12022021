@@ -128,7 +128,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `first_name`, `last_name`, `email`, `created`, `permission`) VALUES
-(17, '$2a$10$wJX2oZK9ahXv3Wn7FcCXFe93JAKdFzIOg3zUzPsKGiCrEjGcGIlNO', 'Super', 'Modérateur', 'admin@groupomania.site', '2021-02-24 18:26:03', 'admin'),
+(17, '$2a$10$wJX2oZK9ahXv3Wn7FcCXFe93JAKdFzIOg3zUzPsKGiCrEjGcGIlNO', 'Super', 'Modérateur', 'mod@groupomania.site', '2021-02-24 18:26:03', 'admin'),
 (31, '$2a$10$SiqpgLAwjUPD9mv9CVcp5ODPgSbws.aWM1B.0cVnn76TCz4x6Dsi2', 'Mylène', 'Porter', 'mylene@groupomania.site', '2021-03-02 15:47:26', 'standard'),
 (32, '$2a$10$SiqpgLAwjUPD9mv9CVcp5ODPgSbws.aWM1B.0cVnn76TCz4x6Dsi2', 'Lucas', 'Martin', 'lucas@groupomania.site', '2021-03-02 15:48:45', 'standard'),
 (33, '$2a$10$SiqpgLAwjUPD9mv9CVcp5ODPgSbws.aWM1B.0cVnn76TCz4x6Dsi2', 'Leachim', 'Retropeu', 'leachim@groupomania.site', '2021-03-02 15:50:50', 'standard');
