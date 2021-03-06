@@ -24,9 +24,9 @@ export default {
       this.password = data.password;
     },
     reset(){
-      sessionStorage.removeItem("userID");
-      sessionStorage.removeItem("token");
-      sessionStorage.removeItem("role");
+      localStorage.removeItem("userID");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
       delete this.$axios.defaults.headers.common["Authorization"];
     },
     login(){
@@ -34,9 +34,9 @@ export default {
       this.$axios
         .post("user/login", this.$data)
         .then((data) => {
-          sessionStorage.setItem("token", data.data.token);
-          sessionStorage.setItem("userID", data.data.userID);
-          sessionStorage.setItem("role", data.data.role);
+          localStorage.setItem("token", data.data.token);
+          localStorage.setItem("userID", data.data.userID);
+          localStorage.setItem("role", data.data.role);
           this.$axios.defaults.headers.common["Authorization"] = "Bearer " + data.data.token;
           this.$router.push("Posts");
         })
@@ -46,9 +46,9 @@ export default {
           } else if (e.response.status == 504) {
             this.setNotification('alert', 'Erreur serveur', null);
           }
-          sessionStorage.removeItem("userID");
-          sessionStorage.removeItem("role");
-          sessionStorage.removeItem("token");
+          localStorage.removeItem("userID");
+          localStorage.removeItem("role");
+          localStorage.removeItem("token");
         });
     },
     setNotification(type, message, action) {

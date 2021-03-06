@@ -34,9 +34,9 @@ export default {
       this.$axios
         .post("user/login", data)
         .then((data) => {
-          sessionStorage.setItem("token", data.data.token);
-          sessionStorage.setItem("userID", data.data.userID);
-          sessionStorage.setItem("role", data.data.role);
+          localStorage.setItem("token", data.data.token);
+          localStorage.setItem("userID", data.data.userID);
+          localStorage.setItem("role", data.data.role);
           this.$axios.defaults.headers.common["Authorization"] = "Bearer " + data.data.token;
           this.$router.push("Posts");
         })

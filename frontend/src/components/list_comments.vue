@@ -16,9 +16,9 @@ export default {
             }
         },
         isMine: function (user_id) {
-            const role = sessionStorage.getItem('role');
+            const role = localStorage.getItem('role');
             if(role == 'standard'){
-                const userID = sessionStorage.getItem('userID');
+                const userID = localStorage.getItem('userID');
                 return (user_id == userID) ? 'show' : 'hide';
             }else if(role == 'admin'){
                 return 'show';

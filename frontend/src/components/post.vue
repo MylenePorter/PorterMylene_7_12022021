@@ -10,9 +10,9 @@ export default {
             return liked > 0 ? 'button-heart-active' : ''; // condition ? true : false
         },
         isMine: function (user_id) {
-            const role = sessionStorage.getItem('role');
+            const role = localStorage.getItem('role');
             if(role == 'standard'){
-                const userID = sessionStorage.getItem('userID');
+                const userID = localStorage.getItem('userID');
                 return (user_id == userID) ? 'show' : 'hide';
             }else if(role == 'admin'){
                 return 'show';
@@ -41,14 +41,15 @@ export default {
                     <div class="post_info_separate">-</div>
                     <div class="post_info_hour">Posté {{post.posted}}</div>
                     <img @click="deletePost(post.postID)" :class="isMine(post.user_id)" class="post_info_delete" src="/img/icons/delete.png" alt="Supprimer">
-                </div>
+                </div> <!---->
                                               
                 <h1 class="post_title">
+                    <!---->
                     <router-link :to="{name: 'Post', query: { postID: post.postID } }">{{post.content}}</router-link>
                 </h1>
                 <div class="post_media">
                     <router-link :to="{name: 'Post', query: { postID: post.postID } }">
-                        <img class="post_media_pic" :src="'http://localhost:3000/images/' + post.filename" :alt="post.content">
+                        <img class="post_media_pic" :src="'http://localhost:3000/images/' + post.filename" :alt="post.content"> <!---->
                         <!-- :src concaténé avec le post.filename --> 
                     </router-link>
                 </div>
@@ -56,6 +57,7 @@ export default {
                     <div class="post_appreciation_likes">
                         <a @click="likePost(post.postID)">
                             <div :class="isLiked(post.me_like)" class="post_appreciation_likes_heart"></div>
+                            <!---->
                         </a>
                         <div class="post_appreciation_likes_count">{{post.likes}} j'aime</div>
                     </div>

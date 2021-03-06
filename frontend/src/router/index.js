@@ -53,9 +53,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     const publicPages = ['/', '/Signup'];
-    const userID = sessionStorage.getItem('userID');
+    const userID = localStorage.getItem('userID');
     const authRequired = !publicPages.includes(to.path);
-    if(authRequired && !userID){
+    if (authRequired && !userID) {
         return next('/');
     }
     next();
