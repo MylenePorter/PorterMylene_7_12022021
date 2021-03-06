@@ -5,7 +5,7 @@ import router from './router';
 import axios from "axios";
 import store from './store';
 
-const token = sessionStorage.getItem('token');
+const token = localStorage.getItem('token');
 axios.defaults.baseURL = 'http://localhost:3000/api/';
 if (token) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
