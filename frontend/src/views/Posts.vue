@@ -23,12 +23,12 @@ export default {
       
       this.$axios
         .delete(`post/${postID}`)
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
           this.setNotification('notification', "Le post vient d'être supprimé", null);
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Il y a eu une erreur lors de la suppression", null);
         });
@@ -37,11 +37,11 @@ export default {
       
       this.$axios
         .post(`post/${postID}/like`)
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
         })
-        .catch((e) => {
+        .catch(() => {
           this.setNotification('alert', "Pas de likage!!!! ;-( ", null);
           
         });
@@ -53,11 +53,11 @@ export default {
       formData.append('content', data.content);
       this.$axios
         .post(`post`, formData)
-        .then((w) => {
+        .then(() => {
           
           this.initialize();
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Le post n'a pas pu être créé", null);
         });
@@ -67,11 +67,11 @@ export default {
     },
     getAllPosts() {
       this.$axios
-        .get("post")
+        .get("post") // http://localhost:3000/api/post
         .then((data) => {
           this.posts = data.data;
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Ahhh!! Nous n'avons pas de posts!!!", null);
         });

@@ -26,6 +26,7 @@ export default {
     reset(){
       sessionStorage.removeItem("userID");
       sessionStorage.removeItem("token");
+      sessionStorage.removeItem("role");
       delete this.$axios.defaults.headers.common["Authorization"];
     },
     login(){
@@ -46,6 +47,7 @@ export default {
             this.setNotification('alert', 'Erreur serveur', null);
           }
           sessionStorage.removeItem("userID");
+          sessionStorage.removeItem("role");
           sessionStorage.removeItem("token");
         });
     },

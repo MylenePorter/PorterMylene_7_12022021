@@ -2,9 +2,9 @@ const mysql = require('../middleware/database').connection;
 const fs = require("fs"); // accéder au fichier pour le supprimer
 require('dotenv').config(); // Accès pour récupérer les données dans .env
 
-exports.addPost = (req, res, next) => {
+exports.addPost = (req, res, next) => { // sanitiser
     const userID = res.locals.userID;
-    const content = mysql.escape(req.body.content);
+    const content = mysql.escape(req.body.content); // escape \ : sanitise code et évite les failles de sécurité
     let file_id;
     console.log(req.file);
 
@@ -40,7 +40,7 @@ exports.addPost = (req, res, next) => {
     }
 }
 
-exports.getAllPosts = (req, res, next) => {
+exports.getAllPosts = (req, res, next) => { // Tri descending
     const userID = res.locals.userID;
     const query = ` SELECT      posts.id AS postID,
                                 DATE_FORMAT(posts.posted, 'le %e %M %Y à %kh%i') AS posted,
@@ -55,7 +55,7 @@ exports.getAllPosts = (req, res, next) => {
                     FROM        posts,
                                 users
                     WHERE       users.id = posts.user_id
-                    ORDER BY    posts.posted DESC  `;
+                    ORDER BY    posts.posted DESC  `; // tri 'descending' des dernières participations 
     console.log(query);
     mysql.query(query, function(err, result) {
         if (result.length == 0) {
@@ -94,15 +94,16 @@ exports.getOnePost = (req, res, next) => {
     });
 }
 
-exports.deletePost = (req, res, next) => {
+exports.deletePost = (req, res, next) => { // Droits modérateurs
     const postID = req.params.id;
     const userID = res.locals.userID;
 
+    // Droits modérateur vérifiés
     let where_admin;
-    if (userID != process.env.ADMIN_ID) {
-        where_admin = ` AND posts.user_id = '${userID}' `;
+    if (userID != process.env.ADMIN_ID) { // si user ne correspond pas à l'admin_id défini dans dotenv
+        where_admin = ` AND posts.user_id = '${userID}' `; // alors droit suppression sur ces posts seulement
     } else {
-        where_admin = ``;
+        where_admin = ``; // sinon pas de limites pour supprimer
     }
 
     const query_filename = `    SELECT  files.name
@@ -134,7 +135,7 @@ exports.deletePost = (req, res, next) => {
     });
 }
 
-exports.likePostStatus = (req, res, next) => {
+exports.likePostStatus = (req, res, next) => { // 3 étapes pour liker/dé-liker post
     const userID = res.locals.userID;
     const postID = req.params.id;
     const query_count = `   SELECT  COUNT(likes.id) AS count

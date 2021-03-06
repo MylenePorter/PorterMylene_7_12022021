@@ -21,7 +21,7 @@ exports.modify = (req, res, next) => {
                                         users.first_name = '${first_name}',
                                         users.last_name = '${last_name}'
                                 WHERE   users.id = '${userID}'  `;
-console.log(req.body);
+    console.log(req.body);
     mysql.query(query_user_find, function(err, result) {
         if (result.length == 0) {
             return res.status(401).json({ error: "Utilisateur non trouvé !" });
@@ -87,11 +87,11 @@ exports.delete = (req, res, next) => {
     const userID = res.locals.userID;
     let query_delete = `DELETE FROM users
                         WHERE users.id = '${userID}' `;
-                        console.log(query_delete);
+    console.log(query_delete);
     mysql.query(query_delete, function(err, result) {
-        if(err){
+        if (err) {
             return res.status(400).json({ message: "Suppression échouée" });
-        }else{
+        } else {
             res.status(200).json({ message: "Utilisateur supprimé !" });
         }
     });
@@ -114,9 +114,9 @@ const userSignUp = (req, res, next) => {
                                     created = NOW()  `;
             console.log(query);
             mysql.query(query, function(err, result) {
-                if(err){
+                if (err) {
                     return res.status(409).json({ error: err });
-                }else{
+                } else {
                     console.log(result.affectedRows);
                     if (result.affectedRows === 1) {
                         console.log("created");
@@ -153,16 +153,14 @@ const userLogin = (req, res, next) => {
             console.log("passwordDB:" + result[0].password);
             bcrypt.compare(password, result[0].password)
                 .then(valid => {
-                    if(!valid){
+                    if (!valid) {
                         return res.status(401).json({ error: "Mot de passe incorrect !" });
-                    }else{
+                    } else {
                         res.status(200).json({
                             userID: result[0].id,
                             role: result[0].permission,
-                            token: jwt.sign(
-                                { userID: result[0].id },
-                                process.env.RANDOM_TOKEN_SECRET, 
-                                { expiresIn: "24h" }
+                            token: jwt.sign({ userID: result[0].id },
+                                process.env.RANDOM_TOKEN_SECRET, { expiresIn: "24h" }
                             )
                         });
                     }
