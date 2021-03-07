@@ -71,7 +71,7 @@ export default {
           
           this.initialize();
         })
-        .catch(() => console.log(e));
+        .catch(() => console.log());
     },
     initialize() {
       this.postID = this.$route.query.postID; // Because vue's params don't darn work!

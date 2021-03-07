@@ -40,7 +40,7 @@ export default {
           this.$axios.defaults.headers.common["Authorization"] = "Bearer " + data.data.token;
           this.$router.push("Posts");
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Email ou mot de passe invalide", null);
           this.$router.push("/");

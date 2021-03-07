@@ -57,7 +57,7 @@ export default {
         .then((data) => {
           this.account = data.data;
         })
-        .catch((e) => {
+        .catch(() => {
           
           this.setNotification('alert', "Il y a eu une erreur", null);
         });
