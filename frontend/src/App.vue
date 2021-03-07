@@ -20,6 +20,6 @@ export default {
     text-decoration: none;
   }
   .mandatory {
-    color: red ;
+    color: rgb(196, 18, 18) ;
   }
 </style>
