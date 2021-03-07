@@ -65,7 +65,7 @@ export default {
 .login {
     background-color: #fff;
     padding: 30px 10px;
-    color: #1f4073 ;
+    color: #112748 ;
     text-align: center;
 }
 .login_tag {

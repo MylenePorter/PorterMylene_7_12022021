@@ -39,13 +39,14 @@ export default {
     display:block;
     clear:both;
     background-color:#1f4073;
-  }
+    font-weight: bold;
+}
   .header_logsign_navbar {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     padding: 10px 0px;
-    border-top: solid 5px #3e80e6;
+    border-top: solid 5px #b4d2ff;
   }
   .header_logsign_navbar_login {
     padding: 10px;
@@ -57,9 +58,10 @@ export default {
   }
   .header_logsign_navbar_active {
     padding: 10px;
-    background-color: #3e80e6;
+    background-color: #b4d2ff;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    color:#0c1e38
 
   }
   .header_logsign_logo {
