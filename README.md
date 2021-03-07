@@ -15,12 +15,12 @@ Informations de configuration :
 
 2 – Après l’avoir importé, remplacer les variables ‘DB_USER’ et ‘DB_PASSWORD’ dans le fichier ‘.env’ dans le ‘backend’
 
-3 – Pour démarrer le ‘backend’ lancer la commande ‘npm start’
+3 – Dans le 'backend' faire un npm install, puis démarrer le ‘backend’ en lançant la commande ‘npm start’
 
-4 – Pour démarrer le ‘frontend’ lancer la commande ‘npm run serve’
+4 – Dans le 'frontend' faire un npm install, puis démarrer le ‘frontend’ en lançant la commande ‘npm run serve’
 
 5 – Connexion au ‘http://localhost:8080’ et créée votre compte pour pouvoir vous connecter
 
-6 – Pour accéder au compte administrateur/modérateur utiliser les codes suivants :
- Email : mod@groupomania.site
-Mot de passe : TestTest1
+6 – Pour accéder au compte modérateur utiliser les codes suivants :
+    Email : mod@groupomania.site
+    Mot de passe : TestTest1
